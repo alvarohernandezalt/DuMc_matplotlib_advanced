@@ -1,5 +1,6 @@
 from collections import Counter, OrderedDict
 from modulefinder import Module, ModuleFinder
+from collections.abc import Sequence
 
 from typecheck import typecheck
 import typecheck as tc
