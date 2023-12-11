@@ -1,75 +1,45 @@
 import itertools
 
-from typecheck import typecheck
-
-
 debug = False
-top_level_group = "top level"
 unknown_group = "unknown"
-matplotlib_groupings = {
-    "backend layer": ["matplotlib.backend",
-                      "matplotlib.blocking",
-                      "matplotlib.dviread",
-                      "matplotlib.mathtext",
-                      "matplotlib.texmanager",
-                      "matplotlib.type1font",
-                      "matplotlib.widgets"],
-    "artist layer": ["matplotlib.afm",
-                     "matplotlib.animation",
-                     "matplotlib.artist",
-                     "matplotlib.ax",
-                     "matplotlib.container",
-                     "matplotlib.contour",
-                     "matplotlib.figure",
-                     "matplotlib.gridspec",
-                     "matplotlib.hatch",
-                     "matplotlib.image",
-                     "matplotlib.legend",
-                     "matplotlib.lines",
-                     "matplotlib.marker",
-                     "matplotlib.offset",
-                     "matplotlib.patches",
-                     "matplotlib.path",
-                     "matplotlib.projection",
-                     "matplotlib.quiver",
-                     "matplotlib.sankey",
-                     "matplotlib.scale",
-                     "matplotlib.spines",
-                     "matplotlib.stackplot",
-                     "matplotlib.streamplot",
-                     "matplotlib.table",
-                     "matplotlib.text",
-                     "matplotlib.ticker",
-                     "matplotlib.tight",
-                     "matplotlib.transforms",
-                     "matplotlib.tri.",
-                     "matplotlib.units"],
-    "scripting layer": ["matplotlib.mlab",
-                        "matplotlib.pylab",
-                        "matplotlib.pyplot"],
-    "configuration": ["matplotlib.rcsetup",
-                      "matplotlib.style"],
-    "utilities": ["matplotlib.bezier",
-                  "matplotlib.cbook",
-                  "matplotlib.cm",
-                  "matplotlib.collections",
-                  "matplotlib.color",
-                  "matplotlib.compat",
-                  "matplotlib.dates",
-                  "matplotlib.delaunay",
-                  "matplotlib.docstring",
-                  "matplotlib.finance",
-                  "matplotlib.font",
-                  "matplotlib.sphinxext",
-                  "mpl_tool"]}
+top_level_group = "matplotlib"
 
+matplotlib_groupings = {
+    "axes": ["matplotlib.axes"],
+    "backend_bases": ["matplotlib.backend_bases"],
+    "backends": ["matplotlib.backends"],
+    "cbook": ["matplotlib.cbook"],
+    "core": ["matplotlib"],
+    "misc": ["matplotlib._cm",
+             "matplotlib._cntr",
+             "matplotlib._color_data",
+             "matplotlib._image",
+             "matplotlib._layoutbox",
+             "matplotlib._mathtext_data",
+             "matplotlib._pylab_helpers",
+             "matplotlib._tri",
+             "matplotlib._version",
+             "matplotlib.afm",
+             "matplotlib.artist",
+             "matplotlib.axis",
+             "matplotlib.blocking_input",
+             "matplotlib.category",
+             "matplotlib.cm",
+             "matplotlib.collections",
+             "matplotlib.color",
+             "matplotlib.compat",
+             "matplotlib.dates",
+             "matplotlib.delaunay",
+             "matplotlib.docstring",
+             "matplotlib.finance",
+             "matplotlib.font",
+             "matplotlib.sphinxext",
+             "mpl_tool"]}
 
 reverse_matplotlib_groupings = dict(list(
     itertools.chain(*[[(x, group) for x in mod_part]
                       for (group, mod_part) in matplotlib_groupings.items()])))
 
-
-@typecheck
 def get_group(mod_name):
     if not isinstance(mod_name, str):
         raise TypeError('mod_name must be a string')
@@ -92,7 +62,4 @@ def get_group(mod_name):
         print("[ ] Couldn't find match for '{}' ...".format(mod_name))
     return unknown_group
 
-
-__all__ = ["matplotlib_groupings", "reverse_matplotlib_groupings",
-           "get_group"]
-del typecheck, itertools
+__all__ = ["matplotlib_groupings", "reverse_matplotlib_groupings", "get_group"]
